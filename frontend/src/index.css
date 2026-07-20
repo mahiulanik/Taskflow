@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-purple-primary: #6c5ce7;
+  --color-purple-hover: #7c6ef7;
+  --color-purple-light: #a29bfe;
+  --color-green: #00d68f;
+  --color-yellow: #ffc048;
+  --color-red: #ff6b6b;
+  --color-blue: #6cb4ee;
+}
+
+/* Light mode defaults */
+:root {
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --card: #f8f9fa;
+  --hover: #e9ecef;
+  --border: #dee2e6;
+  --text-primary: #1a1a2e;
+  --text-secondary: #495057;
+  --text-muted: #868e96;
+}
+
+/* Dark mode */
+.dark {
+  --bg: #1a1a2e;
+  --surface: #23233f;
+  --card: #2a2a4a;
+  --hover: #33335a;
+  --border: #3a3a5c;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6c6c8a;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Utility classes that read CSS variables */
+.bg-dyn { background-color: var(--bg); }
+.surface-dyn { background-color: var(--surface); }
+.card-dyn { background-color: var(--card); }
+.hover-dyn:hover { background-color: var(--hover); }
+.border-dyn { border-color: var(--border); }
+.text-dyn { color: var(--text-primary); }
+.text-sec-dyn { color: var(--text-secondary); }
+.text-muted-dyn { color: var(--text-muted); }
+
+/* Select option styling for dark mode */
+.dark select option {
+  background-color: var(--card);
+  color: var(--text-primary);
+}
+
+/* Global button hover & active effects */
+.btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+}
+
+/* Icon buttons (smaller scale) */
+.btn-icon {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.btn-icon:hover {
+  transform: translateY(-1px);
+}
+.btn-icon:active {
+  transform: translateY(0) scale(0.92);
+}
+
+/* Subtle press for cards/links */
+.pressable {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pressable:active {
+  transform: scale(0.98);
+}
