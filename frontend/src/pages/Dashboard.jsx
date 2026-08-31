@@ -4,6 +4,7 @@ import { useTheme } from "../context/ThemeContext";
 import Sidebar from "../components/Sidebar";
 import TaskCard from "../components/TaskCard";
 import TaskModal from "../components/TaskModal";
+import TaskDetailModal from "../components/TaskDetailModal";
 
 const TABS = [
   { key: "all", label: "All" },
@@ -29,6 +30,7 @@ export default function Dashboard() {
   const [page, setPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+  const [viewingTask, setViewingTask] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -278,7 +280,7 @@ export default function Dashboard() {
                   <TaskCard
                     key={task._id}
                     task={task}
-                    onClick={(t) => setEditingTask(t)}
+                    onClick={(t) => setViewingTask(t)}
                     onEdit={(t) => setEditingTask(t)}
                     onDelete={handleDelete}
                   />
@@ -333,6 +335,16 @@ export default function Dashboard() {
       )}
       {editingTask && (
         <TaskModal task={editingTask} onClose={() => setEditingTask(null)} onSave={handleUpdate} />
+      )}
+      {viewingTask && (
+        <TaskDetailModal
+          task={viewingTask}
+          onClose={() => setViewingTask(null)}
+          onEdit={(t) => {
+            setViewingTask(null);
+            setEditingTask(t);
+          }}
+        />
       )}
     </div>
   );

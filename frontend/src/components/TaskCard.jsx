@@ -8,10 +8,11 @@ export default function TaskCard({ task, onClick, onEdit, onDelete }) {
   return (
     <div
       onClick={() => onClick(task)}
-      className="card-dyn hover:bg-hover border border-dyn rounded-lg p-4 cursor-pointer group pressable"
+      className="card-dyn hover:bg-hover border border-dyn rounded-lg p-4 cursor-pointer group pressable flex flex-col"
     >
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-semibold text-sm leading-snug text-dyn">{task.title}</h3>
+      <div className="flex-1">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="font-semibold text-sm leading-snug text-dyn line-clamp-2">{task.title}</h3>
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
           <button
             onClick={(e) => {
@@ -42,7 +43,8 @@ export default function TaskCard({ task, onClick, onEdit, onDelete }) {
       <p className="text-sec-dyn text-xs leading-relaxed line-clamp-2 mb-3">
         {task.description}
       </p>
-      <div className="flex items-center justify-between">
+      </div>
+      <div className="flex items-center justify-between mt-auto pt-3 border-t border-dyn">
         <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full ${statusColors[task.status]} bg-opacity-20 text-white`}>
           <span className={`w-1.5 h-1.5 rounded-full ${statusColors[task.status]}`}></span>
           {task.status}
